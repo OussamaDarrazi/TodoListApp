@@ -3,16 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/models/todo_item_model.dart';
 import 'package:todo_app/models/todo_list_model.dart';
 
-const Map<String, Icon> categoryIcons = {
-  "studies": Icon(Icons.list),
-  "sports": Icon(Icons.sports_baseball_outlined),
-  "chores": Icon(
-    Icons.house_outlined,
-  ),
-  "pleasure": Icon(Icons.tag_faces_sharp),
-  "friends/family": Icon(Icons.people),
-  "shopping": Icon(Icons.shopping_bag_outlined)
-};
+import 'category_icons.dart';
+
 
 class TaskCheckBoxTile extends StatelessWidget {
   final TodoItemModel todoItem;
@@ -42,8 +34,8 @@ class TaskCheckBoxTile extends StatelessWidget {
                   width: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: todoItem.isCompleted? Colors.cyan.withOpacity(.1): Colors.cyan.withOpacity(.3)),
-                  child: categoryIcons[todoItem.category],
+                      color: todoItem.isCompleted? categoryIcons[todoItem.category]![1].withOpacity(.5): categoryIcons[todoItem.category]![1]),
+                  child: categoryIcons[todoItem.category]![0],
                 ),
                 Expanded(
                     child: Padding(

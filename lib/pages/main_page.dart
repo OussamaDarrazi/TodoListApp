@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../misc widgets/background_layout.dart';
+import '../misc widgets/my_main_button.dart';
 import '../misc widgets/task_list_container.dart';
 import '../models/todo_list_model.dart';
 
@@ -12,6 +13,7 @@ class MainPage extends StatelessWidget {
     final todolistmodel = Provider.of<TodoListModel>(context);
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             const BackgroundLayout(),
@@ -65,22 +67,9 @@ class MainPage extends StatelessWidget {
                         .toList(),
                   ),
                   const Spacer(),
-                  FilledButton.tonal(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(0xFF4A3780)),
-                      minimumSize: MaterialStateProperty.all<Size>(
-                          Size(MediaQuery.of(context).size.width, 50)),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Add New Task",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w900),
-                    ),
-                  )
+                  MyMainButton(text: "Add Task", onPressed: () {
+                    Navigator.pushNamed(context, "addtask");
+                  },),
                 ],
               ),
             )

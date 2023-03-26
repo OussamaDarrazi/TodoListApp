@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:todo_app/models/todo_item_model.dart';
 
 class TodoListModel extends ChangeNotifier {
@@ -22,20 +23,24 @@ class TodoListModel extends ChangeNotifier {
     TodoItemModel(
         title: "Do the Dishes", category: "chores", isCompleted: false, id: 8),
     TodoItemModel(
-        title: "Call my Mom", category: "friends/family", isCompleted: true, id: 9),
+        title: "Call my Mom",
+        category: "friends/family",
+        isCompleted: true,
+        id: 9),
     TodoItemModel(
-        title: "Go on a Picnic", category: "friends/family", isCompleted: false, id: 10),
+        title: "Go on a Picnic",
+        category: "friends/family",
+        isCompleted: false,
+        id: 10),
     TodoItemModel(
         title: "Go Shopping", category: "shopping", isCompleted: true, id: 11),
   ];
 
-
   List<TodoItemModel> get todos => _todos;
-  void toggleCompleted(TodoItemModel todo){
+  void toggleCompleted(TodoItemModel todo) {
     todo.isCompleted = !todo.isCompleted; //to fix
     notifyListeners();
   }
-
 
   void addTodo(TodoItemModel todo) {
     _todos.add(todo);
