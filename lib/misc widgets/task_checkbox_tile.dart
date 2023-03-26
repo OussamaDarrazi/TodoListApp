@@ -15,12 +15,7 @@ class TaskCheckBoxTile extends StatelessWidget {
     return Consumer<TodoListModel>(
       builder: (context, todoListModel, child) {
         
-      return Dismissible(
-        key: ValueKey(todoItem.id),
-        onDismissed: (dismissDirection){
-            todoListModel.toggleCompleted(todoItem);
-          },
-        child: GestureDetector(
+      return GestureDetector(
           onTap: () {
             todoListModel.toggleCompleted(todoItem);
           },
@@ -54,8 +49,8 @@ class TaskCheckBoxTile extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      );}
-    );
+      );
+      
+  });
   }
 }

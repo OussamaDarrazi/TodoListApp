@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/misc%20widgets/category_icons.dart';
 import 'package:todo_app/models/todo_item_model.dart';
 import 'package:todo_app/models/todo_list_model.dart';
-import '../misc widgets/category_picker.dart';
 import '../misc widgets/circle_design.dart';
 import '../misc widgets/my_main_button.dart';
 
@@ -18,6 +17,12 @@ class AddTaskPage extends StatelessWidget {
     return SafeArea(
       child: Consumer<TodoListModel>(
         builder: (context, todoListModel, child) =>  Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            title: Text("Add Task", style: Theme.of(context).textTheme.displayMedium,),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
@@ -49,7 +54,7 @@ class AddTaskPage extends StatelessWidget {
                     ]),
                   ),
                   Expanded(
-                    flex: 9,
+                    flex: 13,
                     child: Container(
                       padding: const EdgeInsets.all(15),
                       color: const Color(0xFFF1F5F9),
@@ -99,6 +104,8 @@ class AddTaskPage extends StatelessWidget {
                             text: "Save",
                             onPressed: () {
                               todoListModel.addTodo(TodoItemModel(title: titleController.text, notes: notesController.text,category: category, isCompleted: false, id: todoListModel.todos.length));
+                              titleController.text="";
+                              notesController.text="";
                               Navigator.pop(context);
                             },
                           )

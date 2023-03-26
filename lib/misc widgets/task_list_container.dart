@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/misc%20widgets/task_checkbox_tile.dart';
 import 'package:todo_app/models/todo_item_model.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo_app/models/todo_list_model.dart';
 
 class TaskListContainer extends StatelessWidget {
   final List<TodoItemModel>? todoItems;
   const TaskListContainer({super.key, this.todoItems = const []});
+  
 
   @override
   Widget build(BuildContext context) {
+    final todoListModel = Provider.of<TodoListModel>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: Container(
@@ -21,8 +26,28 @@ class TaskListContainer extends StatelessWidget {
             ),
             itemCount: todoItems!.length,
             itemBuilder: (context, index) {
-              return Dismissible(
+              return Slidable(
                 key: ValueKey(index),
+                endActionPane:  ActionPane(
+                  motion: const BehindMotion(),
+                  children: [
+                    SlidableAction(
+                      icon: Icons.delete,
+                      label: "Delete",
+                      backgroundColor: Colors.redAccent,
+                      foregroundColor: Colors.white,
+                      onPressed: (context){
+                        todoListModel.removeTodo(todoItems![index]);
+                      }),
+                      SlidableAction(
+                      icon: todoItems![index].isCompleted?Icons.close: Icons.check,
+                      label: todoItems![index].isCompleted? "Mark as undone": "Mark as done",
+                      backgroundColor: Colors.purpleAccent,
+                      foregroundColor: Colors.white,
+                      onPressed: (context){
+                        todoListModel.toggleCompleted(todoItems![index]);
+                      }),
+                  ]),
                 child: TaskCheckBoxTile(todoItem: todoItems![index],),
               );
             },
@@ -30,3 +55,4 @@ class TaskListContainer extends StatelessWidget {
     );
   }
 }
+

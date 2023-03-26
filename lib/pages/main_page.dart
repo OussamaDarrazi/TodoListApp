@@ -23,14 +23,14 @@ class MainPage extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 15),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "October 20, 2022",
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.only(top: 15),
+                  //   alignment: Alignment.bottomLeft,
+                  //   child: Text(
+                  //     "Welcome,",
+                  //     style: Theme.of(context).textTheme.displayMedium,
+                  //   ),
+                  // ),
                   Container(
                     padding: const EdgeInsets.only(top: 15),
                     alignment: Alignment.center,
@@ -42,10 +42,14 @@ class MainPage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  TaskListContainer(
-                    todoItems: todolistmodel.todos
-                        .where((element) => element.isCompleted == false)
-                        .toList(),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    height: 270,
+                    child: TaskListContainer(
+                      todoItems: todolistmodel.todos
+                          .where((element) => element.isCompleted == false)
+                          .toList(),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
