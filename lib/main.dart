@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/models/todo_list_model.dart';
+import 'package:todo_app/pages/add_task_page.dart';
 import 'package:todo_app/pages/main_page.dart';
 
-import 'misc widgets/circle_design.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        "main": (context)=> const MainPage(),
+        "addtask":(context) => const AddTaskPage()
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
           checkboxTheme: CheckboxThemeData(
